@@ -4,17 +4,37 @@ var target = Vector2()
 var in_target = true
 var linear_vel = Vector2()
 var SPEED = 1000
-
-
 var dashRange : float = 100
+var hp = 100 setget set_hp
 
+onready var attack_area = get_node("AttackArea/CollisionShape2D")
+
+func start_dash():
+	target = get_global_mouse_position()
+	in_target = false
+	attack_area.disabled = false
+
+func end_dash():
+	in_target = true
+	attack_area.disabled= true
+	target = position
+
+func _ready():
+	attack_area.disabled= true
+
+
+
+
+func set_hp(value):
+	hp = clamp(value, 0, 100)
+	$CanvasLayer/ProgressBar.value = hp
 
 
 func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("dash"):
-		target = get_global_mouse_position()
-		in_target = false
+		start_dash()
+		
 	
 	if not in_target:
 		var diff = target - position
@@ -46,5 +66,11 @@ func _physics_process(delta):
 		
 			
 		if arrived:
-			in_target = true
+			end_dash()
 	
+
+
+func _on_AttackArea_body_entered(body):
+	if body.is_in_group("enemy"):
+		set_hp(hp-10)
+		print("enemigo atacado")
