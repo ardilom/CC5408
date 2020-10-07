@@ -9,6 +9,14 @@ var hp = 100 setget set_hp
 
 onready var attack_area = get_node("AttackArea/CollisionShape2D")
 
+# SCALING
+var SCALE_SMALL = 0.5
+var SCALE_NORMAL = 1
+var SCALE_BIG = 2
+
+var current_scale = SCALE_NORMAL
+
+
 func start_dash():
 	target = get_global_mouse_position()
 	in_target = false
@@ -31,7 +39,22 @@ func set_hp(value):
 
 
 func _physics_process(delta):
-	
+	if Input.is_action_just_pressed("bigger"):
+		if current_scale == SCALE_SMALL:
+			current_scale = SCALE_NORMAL
+		elif current_scale == SCALE_NORMAL:
+			current_scale = SCALE_BIG
+		$CollisionShape2D.scale = Vector2(current_scale, current_scale)
+		$Sprite.scale = Vector2(current_scale, current_scale)
+		
+	if Input.is_action_just_pressed("smaller"):
+		if current_scale == SCALE_NORMAL:
+			current_scale = SCALE_SMALL
+		elif current_scale == SCALE_BIG:
+			current_scale = SCALE_NORMAL
+		$CollisionShape2D.scale = Vector2(current_scale, current_scale)
+		$Sprite.scale = Vector2(current_scale, current_scale)
+
 	if Input.is_action_just_pressed("dash"):
 		start_dash()
 		
