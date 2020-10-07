@@ -44,16 +44,14 @@ func _physics_process(delta):
 			current_scale = SCALE_NORMAL
 		elif current_scale == SCALE_NORMAL:
 			current_scale = SCALE_BIG
-		$CollisionShape2D.scale = Vector2(current_scale, current_scale)
-		$Sprite.scale = Vector2(current_scale, current_scale)
+		scale = Vector2(current_scale, current_scale)
 		
 	if Input.is_action_just_pressed("smaller"):
 		if current_scale == SCALE_NORMAL:
 			current_scale = SCALE_SMALL
 		elif current_scale == SCALE_BIG:
 			current_scale = SCALE_NORMAL
-		$CollisionShape2D.scale = Vector2(current_scale, current_scale)
-		$Sprite.scale = Vector2(current_scale, current_scale)
+		scale = Vector2(current_scale, current_scale)
 
 	if Input.is_action_just_pressed("dash"):
 		start_dash()
