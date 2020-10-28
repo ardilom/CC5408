@@ -1,3 +1,5 @@
+# project ignores
+Scene/Test.tscn
 
 # Godot-specific ignores
 .import/
