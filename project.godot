@@ -16,7 +16,6 @@ _global_script_class_icons={
 [application]
 
 config/name="TallerVideojuegos_Prototype"
-run/main_scene="res://Scene/Mapa.tscn"
 config/icon="res://icon.png"
 
 [importer_defaults]
