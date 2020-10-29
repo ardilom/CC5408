@@ -12,6 +12,10 @@ func receive_damage(amount):
 func set_hp(value):
 	hp = clamp(value, 0, 100)
 	$ProgressBar.value = hp
+	if hp >0:
+		$AnimationPlayer.current_animation = "idle"
+	else:
+		$AnimationPlayer.current_animation = "dies"
 
 func _physics_process(delta):
 	var target = player.position
@@ -24,7 +28,11 @@ func _physics_process(delta):
 func _process(delta):
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		if collision.collider.is_in_group("player"):
-			collision.collider.receive_damag(damage)
+		if hp>0:
+			if collision.collider.is_in_group("player"):
+				collision.collider.receive_damag(damage)
+				$AnimationPlayer.current_animation = "attack"
+		else:
+			$AnimationPlayer.current_animation = "dies"
 
 
