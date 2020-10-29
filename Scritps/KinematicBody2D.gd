@@ -15,7 +15,7 @@ var SCALE_SMALL = 0.5
 var SCALE_NORMAL = 1
 var SCALE_BIG = 2
 
-
+onready var playback = $AnimationTree.get("parameters/playback")
 
 func start_dash():
 	target = get_global_mouse_position()
@@ -106,12 +106,23 @@ func _physics_process(delta):
 			
 		if arrived:
 			end_dash()
+			
 	
-	if linear_vel.length_squared() > 10:
-		$AnimationPlayer.play("Dash")
-	else:
-		$AnimationPlayer.play("Hold")
-	
+	if linear_vel.length_squared() == 0:
+		playback.travel("Hold")
+		
+	if Input.is_action_just_pressed("dash"):
+		playback.travel("Dash")
+		
+#	if hp == 0:
+#		playback.travel("Die")
+		
+		
+	if linear_vel.x < 0: 
+		$Sprite2.flip_h = true
+	if linear_vel.x > 0:
+		$Sprite2.flip_h = false
+		
 
 
 func _on_AttackArea_body_entered(body):

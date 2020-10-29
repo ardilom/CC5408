@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Animaciones_Rai/Hold.tres" type="Animation" id=1]
 [ext_resource path="res://Scritps/KinematicBody2D.gd" type="Script" id=2]
 [ext_resource path="res://Animaciones_Rai/Dash.tres" type="Animation" id=3]
 [ext_resource path="res://Character_asset/Fullmain.png" type="Texture" id=4]
+[ext_resource path="res://Animaciones_Rai/Die.tres" type="Animation" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.211765, 0.894118, 0.462745, 1 )
@@ -26,15 +27,17 @@ animation = "Hold"
 [sub_resource type="AnimationNodeStateMachineTransition" id=7]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=8]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachine" id=9]
 states/Dash/node = SubResource( 5 )
 states/Dash/position = Vector2( 554, 75 )
 states/Hold/node = SubResource( 6 )
-states/Hold/position = Vector2( 277, 75 )
+states/Hold/position = Vector2( 276, 75 )
 transitions = [ "Hold", "Dash", SubResource( 7 ), "Dash", "Hold", SubResource( 8 ) ]
 start_node = "Hold"
-graph_offset = Vector2( -32.8924, 0 )
+graph_offset = Vector2( -32.8924, 4.53383 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
@@ -76,14 +79,16 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 vframes = 12
 hframes = 10
-frame = 41
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2")
 anims/Dash = ExtResource( 3 )
+anims/Die = ExtResource( 6 )
 anims/Hold = ExtResource( 1 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 9 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource( 10 )
 [connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]
