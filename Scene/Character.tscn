@@ -13,7 +13,7 @@ bg_color = Color( 0.211765, 0.894118, 0.462745, 1 )
 bg_color = Color( 0.976471, 0.403922, 0.403922, 1 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 17.6259, 27.421 )
+extents = Vector2( 17.781, 12.936 )
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 8.38987
@@ -45,9 +45,6 @@ graph_offset = Vector2( -32.8924, 4.53383 )
 "player",
 ]]
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 margin_left = -61.0
@@ -65,11 +62,13 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 18 )
 shape = SubResource( 3 )
 
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+visible = false
 scale = Vector2( 8, 8 )
 shape = SubResource( 4 )
 
@@ -91,4 +90,10 @@ tree_root = SubResource( 9 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 10 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+smoothing_enabled = true
+smoothing_speed = 20.0
+editor_draw_drag_margin = true
 [connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]
