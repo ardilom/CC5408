@@ -21,6 +21,7 @@ func start_dash():
 	target = get_global_mouse_position()
 	in_target = false
 	attack_area.disabled = false
+	
 
 func end_dash():
 	in_target = true
@@ -71,6 +72,11 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("dash"):
 		start_dash()
 		
+	if linear_vel.length_squared() > 1000:
+		$AnimationPlayer.play("Dash")
+	else:
+		$AnimationPlayer.play("Hold")
+		
 	
 	if not in_target:
 		var diff = target - position
@@ -90,6 +96,7 @@ func _physics_process(delta):
 			linear_vel = lerp(linear_vel, target_vel, 0.5)
 		
 		linear_vel = move_and_slide(linear_vel)
+		
 		
 		if get_slide_count() > 0:
 			target = position
