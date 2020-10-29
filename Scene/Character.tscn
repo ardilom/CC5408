@@ -89,6 +89,5 @@ anims/Hold = ExtResource( 1 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 9 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/playback = SubResource( 10 )
 [connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]
