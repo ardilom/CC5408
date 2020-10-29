@@ -6,7 +6,7 @@ var linear_vel = Vector2()
 var SPEED = 1000
 var dashRange : float = 100
 var hp = 100 setget set_hp
-var damage = 15
+var damage = 20
 
 onready var attack_area = get_node("AttackArea/CollisionShape2D")
 
