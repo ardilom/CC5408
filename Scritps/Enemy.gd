@@ -38,6 +38,10 @@ func _process(delta):
 			if collision.collider.is_in_group("player"):
 				collision.collider.receive_damag(damage)
 				$AnimationPlayer.current_animation = "attack"
-	
-
-
+		else:
+			$AnimationPlayer.current_animation = "dies"
+			
+	if linear_vel.x < 0: 
+		$Sprite.flip_h = true
+	else:
+		$Sprite.flip_h = false
