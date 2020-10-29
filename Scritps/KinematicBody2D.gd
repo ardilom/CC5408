@@ -72,10 +72,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("dash"):
 		start_dash()
 		
-	if linear_vel.length_squared() > 1000:
-		$AnimationPlayer.play("Dash")
-	else:
-		$AnimationPlayer.play("Hold")
+	
 		
 	
 	if not in_target:
@@ -109,6 +106,11 @@ func _physics_process(delta):
 			
 		if arrived:
 			end_dash()
+	
+	if linear_vel.length_squared() > 10:
+		$AnimationPlayer.play("Dash")
+	else:
+		$AnimationPlayer.play("Hold")
 	
 
 
