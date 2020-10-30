@@ -33,6 +33,9 @@ func _ready():
 
 func receive_damag(amount):
 	set_hp(hp-amount)
+	
+func heal_by(amount):
+	set_hp(hp-amount)
 
 func set_hp(value):
 	hp = clamp(value, 0, 100)
@@ -71,9 +74,6 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("dash"):
 		start_dash()
-		
-	
-		
 	
 	if not in_target:
 		var diff = target - position

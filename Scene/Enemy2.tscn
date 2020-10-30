@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://animaciones/attack.tres" type="Animation" id=1]
-[ext_resource path="res://Scritps/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://Scritps/Enemy2.gd" type="Script" id=2]
 [ext_resource path="res://monos/demon_axe_red/dead_2.png" type="Texture" id=3]
 [ext_resource path="res://monos/demon_axe_red/dead_3.png" type="Texture" id=4]
 [ext_resource path="res://monos/demon_axe_red/dead_1.png" type="Texture" id=5]
@@ -37,7 +37,6 @@ tracks/0/keys = {
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
 ]]
-position = Vector2( 0, -0.31498 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

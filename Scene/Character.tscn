@@ -78,8 +78,11 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 vframes = 12
 hframes = 10
+frame = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=[
+"player",
+]]
 root_node = NodePath("../Sprite2")
 anims/Dash = ExtResource( 3 )
 anims/Die = ExtResource( 6 )
