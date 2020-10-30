@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-#onready var player = get_node("/root/Main/Character")
+onready var player = get_node("/root/Main/Character")
 var SPEED = 100
 var linear_vel = Vector2()
 var hp = 100 setget set_hp
