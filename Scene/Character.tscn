@@ -15,9 +15,6 @@ bg_color = Color( 0.976471, 0.403922, 0.403922, 1 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 17.781, 12.936 )
 
-[sub_resource type="CircleShape2D" id=4]
-radius = 8.38987
-
 [sub_resource type="AnimationNodeAnimation" id=5]
 animation = "Dash"
 
@@ -40,6 +37,9 @@ start_node = "Hold"
 graph_offset = Vector2( -32.8924, 4.53383 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+
+[sub_resource type="CircleShape2D" id=11]
+radius = 48.0642
 
 [node name="Character" type="KinematicBody2D" groups=[
 "player",
@@ -65,13 +65,6 @@ __meta__ = {
 position = Vector2( 0, 18 )
 shape = SubResource( 3 )
 
-[node name="AttackArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-visible = false
-scale = Vector2( 8, 8 )
-shape = SubResource( 4 )
-
 [node name="Sprite2" type="Sprite" parent="."]
 position = Vector2( 0, -3 )
 scale = Vector2( 2, 2 )
@@ -80,7 +73,9 @@ vframes = 12
 hframes = 10
 frame = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=[
+"player",
+]]
 root_node = NodePath("../Sprite2")
 anims/Dash = ExtResource( 3 )
 anims/Die = ExtResource( 6 )
@@ -97,4 +92,8 @@ current = true
 smoothing_enabled = true
 smoothing_speed = 20.0
 editor_draw_drag_margin = true
-[connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource( 11 )
