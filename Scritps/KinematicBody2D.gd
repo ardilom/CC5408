@@ -34,6 +34,9 @@ func _ready():
 func receive_damag(amount):
 	set_hp(hp-amount)
 
+func heal_by(amount):
+	set_hp(hp+amount)
+
 func set_hp(value):
 	hp = clamp(value, 0, 100)
 	$ProgressBar.value = hp
@@ -42,7 +45,7 @@ func set_hp(value):
 func _physics_process(delta):
 	if Input.is_action_just_released("bigger") or Input.is_action_pressed("bigger") :
 		
-		var new_scale = min(scale.x + 0.1, SCALE_BIG) * Vector2.ONE
+		var new_scale = min(scale.x+0.1,SCALE_BIG) * Vector2.ONE
 		
 		var space_state = get_world_2d().direct_space_state
 		var shape: RectangleShape2D = $CollisionShape2D.shape.duplicate()
@@ -53,28 +56,16 @@ func _physics_process(delta):
 		query.transform.origin = global_position
 		var result = space_state.intersect_shape(query)
 		var normal = Vector2()
-		# can grow if blocked by 1 side or less
-		var can_grow = true
-		var only_left = true
-		var only_right = true
-		var only_up = true
-		var only_down = true
 		for r in result:
 			if r.collider is TileMap:
 				var tilemap: TileMap = r.collider
 				# TODO make an inverse relationship
-				var tile_normal = (global_position - tilemap.map_to_world(r.metadata)).normalized()
-				only_left = only_left and (tile_normal.x > 0)
-				only_right = only_right and (tile_normal.x < 0) 
-				only_up = only_up and (tile_normal.y > 0)
-				only_down = only_down and (tile_normal.y < 0)
-				normal += tile_normal
+				normal += (global_position - tilemap.map_to_world(r.metadata)).normalized()
 		if result.size() > 0:
-			target = global_position + normal.normalized()
+			target = global_position + normal.normalized() * 10
 			in_target = false
 	#		position += normal.normalized() * 4
-		if only_down or only_left or only_right or only_up:
-			scale = new_scale
+		scale = new_scale
 	#		linear_vel = move_and_slide(linear_vel)
 		
 	if Input.is_action_just_released("smaller") or Input.is_action_pressed("smaller"):
@@ -83,9 +74,6 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("dash"):
 		start_dash()
-		
-	
-		
 	
 	if not in_target:
 		var diff = target - position

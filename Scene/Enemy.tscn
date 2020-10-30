@@ -8,7 +8,7 @@
 [ext_resource path="res://monos/demon_axe_red/dead_4.png" type="Texture" id=6]
 [ext_resource path="res://animaciones_enemy/demon_walk.tres" type="Animation" id=7]
 [ext_resource path="res://animaciones_enemy/idle.tres" type="Animation" id=8]
-[ext_resource path="res://monos/demon_axe_red/walk_5.png" type="Texture" id=9]
+[ext_resource path="res://Scene/colision_enemy.gd" type="Script" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 19.823
@@ -91,12 +91,13 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 1, 0 )
-texture = ExtResource( 9 )
+texture = ExtResource( 6 )
 offset = Vector2( 0, -14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 1 )
+script = ExtResource( 9 )
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 anchor_right = 1.0

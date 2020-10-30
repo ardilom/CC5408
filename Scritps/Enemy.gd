@@ -31,8 +31,6 @@ func _physics_process(delta):
 			linear_vel = move_and_slide(linear_vel)
 		else:
 			SPEED=0
-	else:
-		playback.travel("idle")
 		
 
 

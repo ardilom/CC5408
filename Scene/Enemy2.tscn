@@ -1,0 +1,72 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://animaciones/attack.tres" type="Animation" id=1]
+[ext_resource path="res://Scritps/Enemy2.gd" type="Script" id=2]
+[ext_resource path="res://monos/demon_axe_red/dead_2.png" type="Texture" id=3]
+[ext_resource path="res://monos/demon_axe_red/dead_3.png" type="Texture" id=4]
+[ext_resource path="res://monos/demon_axe_red/dead_1.png" type="Texture" id=5]
+[ext_resource path="res://monos/demon_axe_red/dead_4.png" type="Texture" id=6]
+[ext_resource path="res://monos/demon_axe_red/attack2_3.png" type="Texture" id=7]
+[ext_resource path="res://animaciones/idle.tres" type="Animation" id=8]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 19.823
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.211765, 0.894118, 0.462745, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.976471, 0.403922, 0.403922, 1 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "dies"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ) ]
+}
+
+[node name="Enemy2" type="KinematicBody2D" groups=[
+"enemy",
+]]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1, 0 )
+texture = ExtResource( 7 )
+offset = Vector2( 0, -14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.796
+margin_left = -18.0
+margin_top = -26.0
+margin_right = 18.0
+margin_bottom = -22.0
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/attack = ExtResource( 1 )
+anims/dies = SubResource( 4 )
+anims/idle = ExtResource( 8 )
