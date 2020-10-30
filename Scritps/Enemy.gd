@@ -5,6 +5,7 @@ var SPEED = 100
 var linear_vel = Vector2()
 var hp = 100 setget set_hp
 var damage = 0.2
+var dead = false
 
 func receive_damage(amount):
 	if hp>0:
@@ -32,14 +33,21 @@ func _physics_process(delta):
 
 func _process(delta):
 	if hp>0:
+		var near_player = false
 		for i in get_slide_count():
 			var collision = get_slide_collision(i)
 			
 			if collision.collider.is_in_group("player"):
 				collision.collider.receive_damag(damage)
-				$AnimationPlayer.current_animation = "attack"
-			else:
-				$AnimationPlayer.current_animation = "dies"
+				near_player = true
+		if near_player:
+			$AnimationPlayer.current_animation = "attack"
+		else:
+			$AnimationPlayer.current_animation = "idle"
+	elif not dead:
+		$AnimationPlayer.play("dies")
+		dead = true
+		
 			
 	if linear_vel.x < 0: 
 		$Sprite.flip_h = true
