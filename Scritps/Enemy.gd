@@ -1,12 +1,14 @@
 extends KinematicBody2D
 
+
 onready var player = get_node("/root/Main/Character")
+onready var playback = $AnimationTree.get("parameters/playback")
 var SPEED = 100
 var linear_vel = Vector2()
 var hp = 100 setget set_hp
 var damage = 0.2
 var dead = false
-
+var alert = false #variable de alerta si enemy esta en el area de character
 func receive_damage(amount):
 	if hp>0:
 		set_hp(hp-amount)
@@ -15,20 +17,24 @@ func set_hp(value):
 	hp = clamp(value, 0, 100)
 	$ProgressBar.value = hp
 	if hp >0:
-		$AnimationPlayer.current_animation = "idle"
+		playback.travel("idle")
 	else:
-		$AnimationPlayer.current_animation = "dies"
+		playback.travel("dies")
 
 func _physics_process(delta):
-	
-	var target = player.position
-	var diff = target - position
-	var target_vel = diff.normalized() * SPEED
-	if hp>0:
-		linear_vel = lerp(linear_vel, target_vel, 0.5)
-		linear_vel = move_and_slide(linear_vel)
+	if alert:
+		var target = player.position
+		var diff = target - position
+		var target_vel = diff.normalized() * SPEED
+		if hp>0:
+			linear_vel = lerp(linear_vel, target_vel, 0.5)
+			linear_vel = move_and_slide(linear_vel)
+		else:
+			SPEED=0
 	else:
-		SPEED=0
+		playback.travel("idle")
+		
+
 
 
 func _process(delta):
@@ -41,15 +47,23 @@ func _process(delta):
 				collision.collider.receive_damag(damage)
 				near_player = true
 		if near_player:
-			$AnimationPlayer.current_animation = "attack"
+			playback.travel("attack")
 		else:
-			$AnimationPlayer.current_animation = "idle"
+			playback.travel("idle")
 	elif not dead:
-		$AnimationPlayer.play("dies")
+		playback.travel("dies")
 		dead = true
-		
+
 			
 	if linear_vel.x < 0: 
 		$Sprite.flip_h = true
 	else:
 		$Sprite.flip_h = false
+		
+	if linear_vel.length_squared()>10 and hp>0:
+		playback.travel("demon_walk")
+
+func enemy_alerted(x):
+	alert=x
+	
+	
