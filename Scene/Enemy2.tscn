@@ -6,7 +6,7 @@
 [ext_resource path="res://monos/demon_axe_red/dead_3.png" type="Texture" id=4]
 [ext_resource path="res://monos/demon_axe_red/dead_1.png" type="Texture" id=5]
 [ext_resource path="res://monos/demon_axe_red/dead_4.png" type="Texture" id=6]
-[ext_resource path="res://monos/demon_axe_red/attack2_2.png" type="Texture" id=7]
+[ext_resource path="res://monos/demon_axe_red/attack2_3.png" type="Texture" id=7]
 [ext_resource path="res://animaciones/idle.tres" type="Animation" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -34,7 +34,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ) ]
 }
 
-[node name="Enemy" type="KinematicBody2D" groups=[
+[node name="Enemy2" type="KinematicBody2D" groups=[
 "enemy",
 ]]
 script = ExtResource( 2 )
