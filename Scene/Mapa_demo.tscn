@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Tileset.png" type="Texture" id=1]
 [ext_resource path="res://Scene/Character.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Music&Fxs/Juego.wav" type="AudioStream" id=3]
+[ext_resource path="res://Scene/Hp_potion.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scene/Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scene/Mapa_demo.gd" type="Script" id=5]
+[ext_resource path="res://Scene/Enemy2.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -341,6 +343,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 16, 0, 16 )
 18/z_index = 0
 
 [node name="Main" type="Node2D"]
+script = ExtResource( 5 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 11 )
@@ -360,10 +363,11 @@ position = Vector2( 48.493, 292.411 )
 [node name="Character" parent="." instance=ExtResource( 2 )]
 position = Vector2( 200.038, 124.492 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
-volume_db = -14.136
-autoplay = true
-
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 682.761, 320.33 )
+
+[node name="Area2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 984.601, 45.0892 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 492.963, 487.339 )

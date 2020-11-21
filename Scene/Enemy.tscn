@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://animaciones_enemy/attack.tres" type="Animation" id=1]
 [ext_resource path="res://Scritps/Enemy.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://animaciones_enemy/demon_walk.tres" type="Animation" id=7]
 [ext_resource path="res://animaciones_enemy/idle.tres" type="Animation" id=8]
 [ext_resource path="res://Scene/colision_enemy.gd" type="Script" id=9]
+[ext_resource path="res://monos/demon_axe_red/ready_6.png" type="Texture" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 19.823
@@ -63,9 +64,9 @@ animation = "idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
 
-[sub_resource type="AnimationNodeStateMachine" id=17]
+[sub_resource type="AnimationNodeStateMachine" id=18]
 states/attack/node = SubResource( 5 )
 states/attack/position = Vector2( 457, 224 )
 states/demon_walk/node = SubResource( 6 )
@@ -74,11 +75,11 @@ states/dies/node = SubResource( 7 )
 states/dies/position = Vector2( 753, 130 )
 states/idle/node = SubResource( 8 )
 states/idle/position = Vector2( 201, 80 )
-transitions = [ "idle", "demon_walk", SubResource( 9 ), "demon_walk", "attack", SubResource( 10 ), "attack", "dies", SubResource( 11 ), "idle", "attack", SubResource( 12 ), "demon_walk", "idle", SubResource( 13 ), "attack", "idle", SubResource( 14 ), "attack", "demon_walk", SubResource( 15 ), "demon_walk", "dies", SubResource( 16 ), "idle", "dies", SubResource( 19 ) ]
+transitions = [ "idle", "demon_walk", SubResource( 9 ), "demon_walk", "attack", SubResource( 10 ), "attack", "dies", SubResource( 11 ), "idle", "attack", SubResource( 12 ), "demon_walk", "idle", SubResource( 13 ), "attack", "idle", SubResource( 14 ), "attack", "demon_walk", SubResource( 15 ), "demon_walk", "dies", SubResource( 16 ), "idle", "dies", SubResource( 17 ) ]
 start_node = "idle"
 end_node = "dies"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
@@ -91,7 +92,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 1, 0 )
-texture = ExtResource( 6 )
+texture = ExtResource( 10 )
 offset = Vector2( 0, -14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -121,7 +122,7 @@ anims/dies = SubResource( 4 )
 anims/idle = ExtResource( 8 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 17 )
+tree_root = SubResource( 18 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 18 )
+parameters/playback = SubResource( 19 )
