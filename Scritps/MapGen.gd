@@ -18,10 +18,16 @@ const DOWN = 0x4
 const LEFT = 0x8
 
 var room_count=0
+var generated = false
 
 func _process(delta):
 	if Input.is_action_just_released("bigger"):
+		if generated:
+			get_tree().change_scene("res://Scene/MapGen.tscn")
 		run_generation()
+		generated = true
+	if Input.is_action_just_released("next"):
+		get_tree().change_scene("res://Scene/Mapa_demo.tscn")
 
 var rooms_dictionary = {
 #1Door

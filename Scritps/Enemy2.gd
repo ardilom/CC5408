@@ -11,6 +11,10 @@ var damage = 0.2
 var coldown = 2.5
 
 var timer =0
+var alert = false 
+
+func enemy_alerted(x):
+	alert=x
 
 func shoot():
 	var proyectile = load("res://Scene/Bullet_1.tscn")
@@ -33,20 +37,21 @@ func set_hp(value):
 		$AnimationPlayer.current_animation = "dies"
 
 func _physics_process(delta):
-	var target = player.position
-	var diff = target - position
-	var target_vel = diff.normalized() * SPEED
-	if hp>0:
-		linear_vel = lerp(linear_vel, target_vel, 0.5)
-		linear_vel = move_and_slide(linear_vel)
-	else:
-		SPEED=0
+	if alert and hp>0:
+		var target = player.position
+		var diff = target - position
+		var target_vel = diff.normalized() * SPEED
+		if hp>0:
+			linear_vel = lerp(linear_vel, target_vel, 0.5)
+			linear_vel = move_and_slide(linear_vel)
+		else:
+			SPEED=0
 
 
 func _process(delta):
 	
 	timer +=delta
-	if timer>coldown:
+	if timer>coldown and alert and hp>0:
 		shoot()
 		timer=0
 	

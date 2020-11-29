@@ -9,6 +9,7 @@ var hp = 100 setget set_hp
 var damage = 0.2
 var dead = false
 var alert = false #variable de alerta si enemy esta en el area de character
+
 func receive_damage(amount):
 	if hp>0:
 		set_hp(hp-amount)
@@ -63,5 +64,5 @@ func _process(delta):
 
 func enemy_alerted(x):
 	alert=x
-	
-	
+
+
