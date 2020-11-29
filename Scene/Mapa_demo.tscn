@@ -351,11 +351,11 @@ tile_data = PoolIntArray( 1, 4, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 6, 3, 0, 
 [node name="Enemy" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 965.716, 514.158 )
 
-[node name="Enemy2" parent="TileMap" instance=ExtResource( 4 )]
-position = Vector2( 528.523, 54.2864 )
-
 [node name="Enemy3" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 48.493, 292.411 )
+
+[node name="Enemy2" parent="TileMap" instance=ExtResource( 4 )]
+position = Vector2( 682.761, 320.33 )
 
 [node name="Character" parent="." instance=ExtResource( 2 )]
 position = Vector2( 200.038, 124.492 )
@@ -366,4 +366,4 @@ volume_db = -14.136
 autoplay = true
 
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 682.761, 320.33 )
+position = Vector2( 977.625, 40.125 )
