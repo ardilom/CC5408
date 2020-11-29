@@ -9,7 +9,7 @@
 [ext_resource path="res://animaciones_enemy/demon_walk.tres" type="Animation" id=7]
 [ext_resource path="res://animaciones_enemy/idle.tres" type="Animation" id=8]
 [ext_resource path="res://Scene/colision_enemy.gd" type="Script" id=9]
-[ext_resource path="res://monos/demon_axe_red/ready_6.png" type="Texture" id=10]
+[ext_resource path="res://monos/demon_axe_red/ready_3.png" type="Texture" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 19.823
@@ -24,7 +24,7 @@ bg_color = Color( 0.976471, 0.403922, 0.403922, 1 )
 resource_name = "dies"
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("../Enemy/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
