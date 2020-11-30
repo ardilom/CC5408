@@ -5,7 +5,11 @@ var scenes_tiles_size = 64
 var target_size = 100
 
 var character = preload("res://Scene/Character.tscn")
-var enemies = [preload("res://Scene/Enemy.tscn"), preload("res://Scene/Enemy2.tscn")]
+var enemies = [
+	preload("res://Scene/Enemy.tscn"),
+	preload("res://Scene/Enemy2.tscn"),
+	preload("res://Scene/Big_Boss.tscn")
+]
 
 var rooms_1door = [preload("res://Rooms/Room1.tscn")]
 var rooms_2_long = [preload("res://Rooms/Room2.tscn")]
@@ -92,7 +96,7 @@ func instantiate_character():
 	add_child(main_character, true)
 	
 func instantiate_enemy(position):
-	var enemy = enemies[randi()%2].instance()
+	var enemy = enemies[randi()%len(enemies)].instance()
 	enemy.position = position
 	instanciated_enemies.append(enemy)
 	

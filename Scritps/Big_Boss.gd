@@ -1,6 +1,5 @@
 extends KinematicBody2D
 
-
 onready var player = get_node("/root/Main/Character")
 
 var SPEED = 50

@@ -1,15 +1,15 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=30 format=2]
 
-[ext_resource path="res://animaciones/attack.tres" type="Animation" id=1]
+[ext_resource path="res://animaciones_enemy/attack.tres" type="Animation" id=1]
 [ext_resource path="res://Scritps/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://monos/demon_axe_red/dead_2.png" type="Texture" id=3]
 [ext_resource path="res://monos/demon_axe_red/dead_3.png" type="Texture" id=4]
 [ext_resource path="res://monos/demon_axe_red/dead_1.png" type="Texture" id=5]
 [ext_resource path="res://monos/demon_axe_red/dead_4.png" type="Texture" id=6]
-[ext_resource path="res://monos/demon_axe_red/attack2_2.png" type="Texture" id=7]
-[ext_resource path="res://animaciones/idle.tres" type="Animation" id=8]
-[ext_resource path="res://monos/demon_axe_red/ready_5.png" type="Texture" id=9]
-
+[ext_resource path="res://animaciones_enemy/demon_walk.tres" type="Animation" id=7]
+[ext_resource path="res://animaciones_enemy/idle.tres" type="Animation" id=8]
+[ext_resource path="res://Scene/colision_enemy.gd" type="Script" id=9]
+[ext_resource path="res://monos/demon_axe_red/ready_1.png" type="Texture" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 19.823
@@ -24,7 +24,7 @@ bg_color = Color( 0.976471, 0.403922, 0.403922, 1 )
 resource_name = "dies"
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("../Enemy/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -35,6 +35,51 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ) ]
 }
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "attack"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "demon_walk"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "dies"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachine" id=18]
+states/attack/node = SubResource( 5 )
+states/attack/position = Vector2( 457, 224 )
+states/demon_walk/node = SubResource( 6 )
+states/demon_walk/position = Vector2( 523, 35 )
+states/dies/node = SubResource( 7 )
+states/dies/position = Vector2( 753, 130 )
+states/idle/node = SubResource( 8 )
+states/idle/position = Vector2( 201, 80 )
+transitions = [ "idle", "demon_walk", SubResource( 9 ), "demon_walk", "attack", SubResource( 10 ), "attack", "dies", SubResource( 11 ), "idle", "attack", SubResource( 12 ), "demon_walk", "idle", SubResource( 13 ), "attack", "idle", SubResource( 14 ), "attack", "demon_walk", SubResource( 15 ), "demon_walk", "dies", SubResource( 16 ), "idle", "dies", SubResource( 17 ) ]
+start_node = "idle"
+end_node = "dies"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
@@ -47,12 +92,13 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 1, 0 )
-texture = ExtResource( 7 )
+texture = ExtResource( 10 )
 offset = Vector2( 0, -14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 1 )
+script = ExtResource( 9 )
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 anchor_right = 1.0
@@ -71,5 +117,12 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack = ExtResource( 1 )
+anims/demon_walk = ExtResource( 7 )
 anims/dies = SubResource( 4 )
 anims/idle = ExtResource( 8 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 18 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 19 )
