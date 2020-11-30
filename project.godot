@@ -19,6 +19,10 @@ config/name="TallerVideojuegos_Prototype"
 run/main_scene="res://presentacion/portada.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Music="*res://Scene/Music.tscn"
+
 [importer_defaults]
 
 texture={
