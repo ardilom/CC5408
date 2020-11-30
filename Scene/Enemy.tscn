@@ -9,7 +9,7 @@
 [ext_resource path="res://animaciones_enemy/demon_walk.tres" type="Animation" id=7]
 [ext_resource path="res://animaciones_enemy/idle.tres" type="Animation" id=8]
 [ext_resource path="res://Scene/colision_enemy.gd" type="Script" id=9]
-[ext_resource path="res://monos/demon_axe_red/ready_5.png" type="Texture" id=10]
+[ext_resource path="res://monos/demon_axe_red/ready_6.png" type="Texture" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 19.823
@@ -98,6 +98,7 @@ offset = Vector2( 0, -14 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 1 )
+one_way_collision_margin = 0.0
 script = ExtResource( 9 )
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
