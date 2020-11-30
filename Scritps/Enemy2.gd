@@ -8,9 +8,10 @@ var linear_vel = Vector2()
 var hp = 100 setget set_hp
 var damage = 0.2
 var dead = false
+
 var coldown = 2.5
 
-var timer =0
+var timer = 0
 var alert = false 
 
 func enemy_alerted(x):
@@ -27,6 +28,8 @@ func shoot():
 func receive_damage(amount):
 	if hp>0:
 		set_hp(hp-amount)
+	elif not dead:
+		dead = true
 
 func set_hp(value):
 	hp = clamp(value, 0, 100)
@@ -49,7 +52,10 @@ func _physics_process(delta):
 			SPEED=0
 
 
+
+
 func _process(delta):
+
 	if hp>0:
 		timer +=delta
 		if timer>coldown and alert:
