@@ -9,10 +9,10 @@
 [ext_resource path="res://animaciones_enemy/demon_walk.tres" type="Animation" id=7]
 [ext_resource path="res://animaciones_enemy/idle.tres" type="Animation" id=8]
 [ext_resource path="res://Scene/colision_enemy.gd" type="Script" id=9]
-[ext_resource path="res://monos/demon_axe_red/ready_5.png" type="Texture" id=10]
+[ext_resource path="res://monos/demon_axe_red/ready_6.png" type="Texture" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 19.823
+radius = 14.5263
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.211765, 0.894118, 0.462745, 1 )
@@ -96,7 +96,6 @@ texture = ExtResource( 10 )
 offset = Vector2( 0, -14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 1 )
 script = ExtResource( 9 )
 
