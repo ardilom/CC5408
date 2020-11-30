@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Animaciones_Rai/Hold.tres" type="Animation" id=1]
 [ext_resource path="res://Scritps/KinematicBody2D.gd" type="Script" id=2]
@@ -6,12 +6,7 @@
 [ext_resource path="res://Character_asset/Fullmain.png" type="Texture" id=4]
 [ext_resource path="res://Scene/AlertArea.gd" type="Script" id=5]
 [ext_resource path="res://Animaciones_Rai/Die.tres" type="Animation" id=6]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.211765, 0.894118, 0.462745, 1 )
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.976471, 0.403922, 0.403922, 1 )
+[ext_resource path="res://Light_Texture.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 17.781, 12.936 )
@@ -42,6 +37,12 @@ graph_offset = Vector2( -32.8924, 4.53383 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.211765, 0.894118, 0.462745, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.976471, 0.403922, 0.403922, 1 )
+
 [sub_resource type="CircleShape2D" id=11]
 radius = 214.145
 
@@ -49,21 +50,6 @@ radius = 214.145
 "player",
 ]]
 script = ExtResource( 2 )
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-margin_left = -61.0
-margin_top = -59.0
-margin_right = 63.0
-margin_bottom = -50.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
-custom_colors/font_color = Color( 0.0980392, 0.635294, 0.282353, 1 )
-custom_colors/font_color_shadow = Color( 0.721569, 0.215686, 0.215686, 1 )
-value = 100.0
-percent_visible = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 18 )
@@ -75,14 +61,6 @@ shape = SubResource( 3 )
 visible = false
 scale = Vector2( 8, 8 )
 shape = SubResource( 4 )
-
-[node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( 0, -3 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
-vframes = 12
-hframes = 10
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2")
@@ -101,6 +79,34 @@ current = true
 smoothing_enabled = true
 smoothing_speed = 20.0
 editor_draw_drag_margin = true
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 0, -3 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+vframes = 12
+hframes = 10
+frame = 2
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 2, 0.433138 )
+scale = Vector2( 1.00391, 0.579193 )
+texture = ExtResource( 7 )
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = -61.0
+margin_top = -59.0
+margin_right = 63.0
+margin_bottom = -50.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+custom_colors/font_color = Color( 0.0980392, 0.635294, 0.282353, 1 )
+custom_colors/font_color_shadow = Color( 0.721569, 0.215686, 0.215686, 1 )
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource( 5 )
