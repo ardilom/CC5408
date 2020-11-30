@@ -37,6 +37,8 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.842773, 0.292995, 0.292995, 1 )
+light_mask = 0
 position = Vector2( 1, 0 )
 texture = ExtResource( 5 )
 offset = Vector2( 0, -14 )

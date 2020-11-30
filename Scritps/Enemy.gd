@@ -17,10 +17,13 @@ func receive_damage(amount):
 func set_hp(value):
 	hp = clamp(value, 0, 100)
 	$ProgressBar.value = hp
+	
 	if hp >0:
 		playback.travel("idle")
 	else:
 		playback.travel("dies")
+		$ProgressBar.visible = false
+		
 
 func _physics_process(delta):
 	if alert:
@@ -52,6 +55,7 @@ func _process(delta):
 	elif not dead:
 		playback.travel("dies")
 		dead = true
+		$CollisionShape2D.disabled = true
 
 			
 	if linear_vel.x < 0: 

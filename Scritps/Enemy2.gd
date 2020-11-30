@@ -38,6 +38,7 @@ func set_hp(value):
 		$AnimationPlayer.current_animation = "idle"
 	else:
 		$AnimationPlayer.current_animation = "dies"
+		$ProgressBar.visible = false
 
 func _physics_process(delta):
 	if alert and hp>0:
@@ -54,19 +55,18 @@ func _physics_process(delta):
 
 
 func _process(delta):
-	
-	timer +=delta
-	if timer>coldown and alert and hp>0:
-		shoot()
-		timer=0
-	
-	if linear_vel.x < 0: 
-		$Sprite.flip_h = true
-	else:
-		$Sprite.flip_h = false
+
+	if hp>0:
+		timer +=delta
+		if timer>coldown and alert:
+			shoot()
+			timer=0
 		
-	
-
-
-
-
+		if linear_vel.x < 0: 
+			$Sprite.flip_h = true
+		else:
+			$Sprite.flip_h = false
+	elif not dead:
+		#playback.travel("dies")
+		dead = true
+		$CollisionShape2D.disabled = true
