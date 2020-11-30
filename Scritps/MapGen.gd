@@ -2,13 +2,13 @@ extends Node2D
 
 var scenes_tiles_size = 64
 
-var target_size = 100
+var target_size = 40
 
 var character = preload("res://Scene/Character.tscn")
 var enemies = [
 	preload("res://Scene/Enemy.tscn"),
 	preload("res://Scene/Enemy2.tscn"),
-	preload("res://Scene/Big_Boss.tscn")
+	#preload("res://Scene/Big_Boss.tscn")
 ]
 
 var rooms_1door = [preload("res://Rooms/Room1.tscn")]

@@ -6,6 +6,7 @@ var SPEED = 50
 var linear_vel = Vector2()
 var hp = 100 setget set_hp
 var damage = 0.2
+var dead = false
 
 var coldown = 2.5
 
@@ -34,7 +35,8 @@ func set_hp(value):
 	$ProgressBar.value = hp
 	if hp>0:
 		$AnimationPlayer.current_animation = "idle"
-	else:
+	elif not dead:
+		dead = true
 		$AnimationPlayer.current_animation = "dies"
 
 func _physics_process(delta):

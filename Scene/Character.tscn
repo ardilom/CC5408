@@ -83,7 +83,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 vframes = 12
 hframes = 10
-frame = 2
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2")
@@ -107,6 +107,7 @@ editor_draw_drag_margin = true
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource( 11 )
 
 [node name="Light2D" type="Light2D" parent="."]
