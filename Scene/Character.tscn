@@ -86,7 +86,6 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 vframes = 12
 hframes = 10
-frame = 2
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 2, 0.433138 )

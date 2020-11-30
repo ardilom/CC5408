@@ -10,6 +10,7 @@ var damage = 0.2
 
 var coldown = 2.5
 
+var coldown_spawn = 2
 
 var timer =0
 var alert = false 
@@ -48,7 +49,13 @@ func _physics_process(delta):
 		else:
 			SPEED=0
 
+var enemies = [preload("res://Scene/Enemy.tscn"), preload("res://Scene/Enemy2.tscn")]
 
+func instantiate_enemy(position):
+#	var scene = get_node("")
+	var enemy = enemies[randi()%2].instance()
+	enemy.position = position
+	add_child(enemy)
 
 
 func _process(delta):
@@ -63,7 +70,9 @@ func _process(delta):
 	else:
 		$Sprite.flip_h = false
 		
-	
+	if timer > coldown_spawn:
+		instantiate_enemy(Vector2(player.position.x+15, player.position.y))
+		timer = 0
 
 
 
