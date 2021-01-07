@@ -1,8 +1,7 @@
 extends Node2D
 
-var scenes_tiles_size = 64
-
-var target_size = 40 + (10 * Global.times_generated)
+var scenes_tiles_size = 16*12
+var target_size = 40
 
 var character = preload("res://Scene/Character.tscn")
 var enemies = [
@@ -11,18 +10,28 @@ var enemies = [
 	#preload("res://Scene/Big_Boss.tscn")
 ]
 
-var rooms_1door = [preload("res://Rooms/Room1.tscn")]
-var rooms_2_long = [preload("res://Rooms/Room2.tscn")]
-var rooms_2_L = [preload("res://Rooms/Room2L.tscn")]
-var rooms_3 = [preload("res://Rooms/Room3.tscn")]
-var rooms_4 = [preload("res://Rooms/Room4.tscn")]
-var rooms_start = [preload("res://Rooms/Room4.tscn")]
-var rooms_boss = [preload("res://Rooms/Room1.tscn")]
+var rooms_u = [preload("res://Rooms/RoomU.tscn")]
+var rooms_r = [preload("res://Rooms/RoomR.tscn")]
+var rooms_ru = [preload("res://Rooms/RoomRU.tscn")]
+var rooms_d = [preload("res://Rooms/RoomD.tscn"), preload("res://Rooms/RoomD1.tscn"), preload("res://Rooms/RoomD2.tscn")]
+var rooms_du = [preload("res://Rooms/RoomDU.tscn")]
+var rooms_dr = [preload("res://Rooms/RoomDR.tscn"), preload("res://Rooms/RoomDR1.tscn"), preload("res://Rooms/RoomDR2.tscn")]
+var rooms_dru = [preload("res://Rooms/RoomDRU.tscn")]
+var rooms_l = [preload("res://Rooms/RoomL.tscn")]
+var rooms_lu = [preload("res://Rooms/RoomLU.tscn")]
+var rooms_lr = [preload("res://Rooms/RoomLR.tscn")]
+var rooms_lru = [preload("res://Rooms/RoomLRU.tscn")]
+var rooms_ld = [preload("res://Rooms/RoomLD.tscn")]
+var rooms_ldu = [preload("res://Rooms/RoomLDU.tscn")]
+var rooms_ldr = [preload("res://Rooms/RoomLDR.tscn")]
+var rooms_ldru = [preload("res://Rooms/RoomLDRU.tscn")]
 
-const UP = 0x1
-const RIGHT = 0x2
-const DOWN = 0x4
-const LEFT = 0x8
+var rooms_start = [preload("res://Rooms/RoomLDRU.tscn")]
+
+const UP = 0x1 #0001
+const RIGHT = 0x2 #0010
+const DOWN = 0x4 #0100
+const LEFT = 0x8 #1000
 
 var room_count = 0
 var generated = false
@@ -44,29 +53,28 @@ func _process(delta):
 			return
 	Global.times_generated += 1
 	get_tree().change_scene("res://Scene/MapGen.tscn")
-	
 
 var rooms_dictionary = {
 	#1Door
-	UP : [rooms_1door, 0],
-	RIGHT : [rooms_1door, 90],
-	LEFT : [rooms_1door, -90],
-	DOWN : [rooms_1door, 180],
+	UP : rooms_u,
+	RIGHT : rooms_r,
+	LEFT : rooms_l,
+	DOWN : rooms_d,
 	#2Doors
-	UP+DOWN : [rooms_2_long, 0],
-	RIGHT + LEFT : [rooms_2_long, 90],
+	UP+DOWN : rooms_du,
+	RIGHT + LEFT : rooms_lr,
 	#2DoorsL
-	RIGHT+UP : [rooms_2_L, 0], 
-	UP+LEFT : [rooms_2_L, -90], 
-	LEFT+DOWN : [rooms_2_L, 180], 
-	DOWN+RIGHT : [rooms_2_L, 90],
+	RIGHT+UP : rooms_ru, 
+	UP+LEFT : rooms_lu, 
+	LEFT+DOWN :  rooms_ld, 
+	DOWN+RIGHT : rooms_dr,
 	#3Doors
-	RIGHT+UP+LEFT : [rooms_3, 0], 
-	UP+LEFT+DOWN : [rooms_3, -90], 
-	LEFT+DOWN+RIGHT : [rooms_3, 180], 
-	DOWN+RIGHT+UP : [rooms_3, 90],
+	RIGHT+UP+LEFT : rooms_lru, 
+	UP+LEFT+DOWN : rooms_ldu, 
+	LEFT+DOWN+RIGHT : rooms_ldr, 
+	DOWN+RIGHT+UP : rooms_dru,
 	#4Doors
-	RIGHT+UP+LEFT+ DOWN : [rooms_4,0]
+	RIGHT+UP+LEFT+ DOWN : rooms_ldru
 }
 
 var current_rooms_id_dictionary = {}
@@ -74,7 +82,8 @@ var current_rooms_id_dictionary = {}
 var directions = {Vector2(0,-1) : UP, Vector2(1,0) : RIGHT, Vector2(0,1) : DOWN, Vector2(-1,0) : LEFT}
 
 func run_generation():
-	instantiate_room(pick_from_array(rooms_start), Vector2.ZERO, 0.0)
+	instantiate_room(pick_from_array(rooms_start), Vector2.ZERO)
+	instantiate_character()
 	current_rooms_id_dictionary[Vector2.ZERO] = 15
 	var open_rooms = directions.keys()
 	var current_size = 1
@@ -86,7 +95,7 @@ func run_generation():
 	while open_rooms.size() > 0:
 		#same but prefering rooms with low doors
 		spawn_fitting_room_on(open_rooms, true)
-	instantiate_character()
+	
 	for instanciated_enemy in instanciated_enemies:
 		add_child(instanciated_enemy)
 	
@@ -104,14 +113,13 @@ func instantiate_enemy(position):
 	instanciated_enemies.append(enemy)
 	
 
-func instantiate_room(room_scene , coord : Vector2, rotation : float):
+func instantiate_room(room_scene , coord : Vector2):
 	var room = room_scene.instance()
 	add_child(room)
 	room.position.y = coord.y * scenes_tiles_size
 	room.position.x = coord.x * scenes_tiles_size
 	if randf() < 0.08:
 		instantiate_enemy(room.position)
-	room.set_rotation_degrees(rotation)
 	room_count+=1
 
 #put room into an available spot
@@ -122,7 +130,7 @@ func spawn_fitting_room_on(open_rooms, one_pref):
 	var valid_rooms = find_valid_rooms(coord)
 	#choose one kind of room based on preferences
 	var id = pick_id(valid_rooms,one_pref)
-	var data = rooms_dictionary.get(id)
+	var rooms = rooms_dictionary.get(id)
 	
 	#add room to database
 	current_rooms_id_dictionary[coord] = id
@@ -134,7 +142,7 @@ func spawn_fitting_room_on(open_rooms, one_pref):
 			open_rooms.append(coord+dir)
 	
 	#instantiate it into the world
-	instantiate_room(pick_from_array(data[0]), coord ,data[1])
+	instantiate_room(pick_from_array(rooms), coord)
 
 func find_valid_rooms(cell):
 	var b1 = [1,2,4,8]

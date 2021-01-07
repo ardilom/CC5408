@@ -34,6 +34,9 @@ func _ready():
 func receive_damag(amount):
 	set_hp(hp-amount)
 
+func heal_by(value):
+	set_hp(value + hp)
+
 func set_hp(value):
 	hp = clamp(value, 0, 100)
 	$ProgressBar.value = hp
