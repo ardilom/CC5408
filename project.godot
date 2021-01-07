@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Music="*res://Scene/Music.tscn"
+Global="*res://Scritps/Global.gd"
 
 [importer_defaults]
 

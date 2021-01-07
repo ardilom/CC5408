@@ -2,7 +2,7 @@ extends Node2D
 
 var scenes_tiles_size = 64
 
-var target_size = 40
+var target_size = 40 + (10 * Global.times_generated)
 
 var character = preload("res://Scene/Character.tscn")
 var enemies = [
@@ -29,18 +29,21 @@ var generated = false
 var instanciated_enemies = []
 
 func _process(delta):
+	print(Global.times_generated)
 	if Input.is_action_just_released("next"):
-		if generated:
+		if Global.times_generated > 5:
+			get_tree().change_scene("res://Scene/GodotCredits.tscn")
+		elif generated:
+			Global.times_generated += 1
 			get_tree().change_scene("res://Scene/MapGen.tscn")
-			generated = false
 	if not generated:
 		run_generation()
 		generated = true
 	for instanciated_enemy in instanciated_enemies:
 		if not instanciated_enemy.dead:
 			return
+	Global.times_generated += 1
 	get_tree().change_scene("res://Scene/MapGen.tscn")
-	generated = false
 	
 
 var rooms_dictionary = {
