@@ -21,7 +21,10 @@ var curr_line := 0
 var lines := []
 
 var credits = [
-	[
+	[	
+		"CRISTAL GALORE"
+	],
+	[	
 		"A game by Compumundohipermegarred®"
 	],[
 		"Desarrollo y Diseño",
@@ -43,8 +46,9 @@ var credits = [
 		"https://pixel-poem.itch.io/dungeon-assetpuck"
 	],[
 		"Asset Mapa 2",
-		"",
-		""
+		"Free Cave-ish Tileset and Random Sprites",
+		"Bennett Johnson",
+		"https://bigghead.itch.io/gmtk2019-art-assets"
 	],[
 		"Asset Proyectiles",
 		"Godot",
