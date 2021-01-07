@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Muerte enemy.wav-41fe9e6d586b26bc501d36c436977a67.sample"
+
+[deps]
+
+source_file="res://Music&Fxs/Muerte enemy.wav"
+dest_files=[ "res://.import/Muerte enemy.wav-41fe9e6d586b26bc501d36c436977a67.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Dolor hero.wav-b6bdaefaef207c68db4ae108e48d2264.sample"
+
+[deps]
+
+source_file="res://Music&Fxs/Dolor hero.wav"
+dest_files=[ "res://.import/Dolor hero.wav-b6bdaefaef207c68db4ae108e48d2264.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

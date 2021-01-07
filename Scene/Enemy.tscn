@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://animaciones_enemy/attack.tres" type="Animation" id=1]
 [ext_resource path="res://Scritps/Enemy.gd" type="Script" id=2]
@@ -9,7 +9,8 @@
 [ext_resource path="res://animaciones_enemy/demon_walk.tres" type="Animation" id=7]
 [ext_resource path="res://animaciones_enemy/idle.tres" type="Animation" id=8]
 [ext_resource path="res://Scene/colision_enemy.gd" type="Script" id=9]
-[ext_resource path="res://monos/demon_axe_red/ready_4.png" type="Texture" id=10]
+[ext_resource path="res://monos/demon_axe_red/ready_2.png" type="Texture" id=10]
+[ext_resource path="res://Music&Fxs/Dolor enemy.wav" type="AudioStream" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 19.823
@@ -127,3 +128,7 @@ tree_root = SubResource( 18 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 19 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -16.155

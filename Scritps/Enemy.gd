@@ -11,9 +11,11 @@ var dead = false
 var alert = false #variable de alerta si enemy esta en el area de character
 
 func receive_damage(amount):
+	var sound_dolor = $AudioStreamPlayer
 	if hp>0:
 		set_hp(hp-amount)
-
+		sound_dolor.play()
+		
 func set_hp(value):
 	hp = clamp(value, 0, 100)
 	$ProgressBar.value = hp
@@ -54,6 +56,7 @@ func _process(delta):
 			playback.travel("idle")
 	elif not dead:
 		playback.travel("dies")
+		
 		dead = true
 		$CollisionShape2D.disabled = true
 
@@ -65,6 +68,8 @@ func _process(delta):
 		
 	if linear_vel.length_squared()>10 and hp>0:
 		playback.travel("demon_walk")
+
+	
 
 func enemy_alerted(x):
 	alert=x

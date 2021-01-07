@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Cristal.wav-41f411cb4804dc01c3524ffb172c4406.sample"
+
+[deps]
+
+source_file="res://Music&Fxs/Cristal.wav"
+dest_files=[ "res://.import/Cristal.wav-41f411cb4804dc01c3524ffb172c4406.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
