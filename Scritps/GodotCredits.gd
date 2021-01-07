@@ -22,37 +22,47 @@ var lines := []
 
 var credits = [
 	[
-		"A game by Awesome Game Company"
+		"A game by Compumundohipermegarred®"
 	],[
-		"Programming",
-		"Programmer Name",
-		"Programmer Name 2"
+		"Desarrollo y Diseño",
+		"Marcos Gómez",
+		"Pedro Popelka",
+		"Felipe Ardila",
+		"Raimundo Lorca"
 	],[
-		"Art",
-		"Artist Name"
+		"Asset Heroe",
+		"Kronovi-",
+		"https://darkpixel-kronovi.itch.io/rogue-knight"
 	],[
-		"Music",
-		"Musician Name"
+		"Asset Enemigos",
+		"Sanctumpixel",
+		"https://sanctumpixel.itch.io/imp-axe-demon-pixel-art-character"
 	],[
-		"Sound Effects",
-		"SFX Name"
+		"Asset Mapa 1",
+		"Pixel_Poem",
+		"https://pixel-poem.itch.io/dungeon-assetpuck"
 	],[
-		"Testers",
-		"Name 1",
-		"Name 2",
-		"Name 3"
-	],[
-		"Tools used",
-		"Developed with Godot Engine",
-		"https://godotengine.org/license",
+		"Asset Mapa 2",
 		"",
-		"Art created with My Favourite Art Program",
-		"https://myfavouriteartprogram.com"
+		""
+	],[
+		"Asset Proyectiles",
+		"Godot",
+		"https://pixel-poem.itch.io/dungeon-assetpuck"
+	],[
+		"Musica y SFX",
+		"Pedro Popelka"
+	],[
+		"Developed with Godot Engine",
+		"https://godotengine.org/",
+	],[
+		"Script Creditos",
+		"Ben Bishop",
+		"https://github.com/benbishopnz/godot-credits"
 	],[
 		"Special thanks",
-		"My parents",
-		"My friends",
-		"My pet rabbit"
+		"W.W",
+		
 	]
 ]
 

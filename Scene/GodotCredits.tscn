@@ -21,7 +21,11 @@ margin_bottom = 1080.0
 [node name="Line" type="Label" parent="CreditsContainer"]
 anchor_right = 1.0
 margin_top = 1080.0
+margin_right = -915.0
 margin_bottom = 1094.0
 size_flags_horizontal = 3
 text = "Credits line"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
